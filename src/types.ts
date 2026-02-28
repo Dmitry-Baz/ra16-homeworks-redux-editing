@@ -14,9 +14,14 @@ export interface FormState {
   };
 }
 
+export interface FilterState {
+  searchTerm: string;
+}
+
 export type RootState = {
   services: {
     items: Service[];
   };
   form: FormState;
+  filter: FilterState;
 };

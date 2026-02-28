@@ -1,22 +1,20 @@
+// src/components/ServiceList.tsx
 import { useSelector } from "react-redux";
-import type { RootState } from "../types";
+import { selectFilteredServices } from "../selectors/servicesSelectors";
 import ServiceItem from "./ServiceItem";
 
 export default function ServiceList() {
-  const services = useSelector((state: RootState) => state.services.items);
+  const filteredServices = useSelector(selectFilteredServices);
 
   return (
     <div>
-      <div style={{ marginBottom: "16px", fontWeight: "bold" }}>
-        Всего услуг: {services.length}
-      </div>
-      {services.length === 0 ? (
+      {filteredServices.length === 0 ? (
         <p style={{ color: "#999", textAlign: "center", padding: "20px" }}>
-          Нет услуг. Добавьте первую.
+          Услуги не найдены
         </p>
       ) : (
         <div>
-          {services.map((service) => (
+          {filteredServices.map((service) => (
             <ServiceItem key={service.id} service={service} />
           ))}
         </div>
